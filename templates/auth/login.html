@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <form class="form-group" action="{% url 'login' %}" method="post">
+        <h1 class="text-center" style="margin-bottom: 40px;">Login</h1>
+        <div class="" style="text-align: center">
+            {% csrf_token %}
+            {{ form }}
+            <input name="text" type="hidden" value="{{ next }}">
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn" style="background: burlywood">Submit</button>
+            </div>
+            <div class="text-center login-span">
+                <span>Don't have an account? Register from here:</span>
+                <div>
+                    <a href="{% url 'register' %}" class="btn" style="background: burlywood; margin-top: 15px;">Sign
+                        Up</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<h1> {{ request.user.username }} </h1>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+.navbar-nav {
+    flex-direction: row;
+}
+
+.nav-link {
+    padding-right: .5rem !important;
+    padding-left: .5rem !important;
+}
+
+/* Fixes dropdown menus placed on the right side */
+.ml-auto .dropdown-menu {
+    left: auto !important;
+    right: 0px;
+}
+
+.card-custom {
+    background: bisque;
+}
+
+.zoom {
+    transition: transform .2s; /* Animation */
+    /*margin: 0 auto;*/
+}
+
+.zoom:hover {
+    transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.btn {
+    margin-top: 20px;
+}
+
+
+.btn:hover {
+    border: 2px solid;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.form-group {
+    margin: auto;
+    width: 400px;
+    padding: 60px;
+    border-radius: 20px;
+    border: solid 2px;
+    background: bisque;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-top: 70px;
+}
+
+.login-span {
+    margin-top: 10px;
+}
+
+input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display:inline-block;
+    *display: inline;     /* for IE7*/
+    zoom:1;              /* for IE7*/
+    vertical-align:middle;
+    margin-left:50px
+}
+
+label {
+    display:inline-block;
+    *display: inline;     /* for IE7*/
+    zoom:1;              /* for IE7*/
+    padding-top: 5px;
+    text-align: left;
+    width: 140px;
+    margin: auto;
+}
+
