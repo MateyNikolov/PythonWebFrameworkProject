@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'finalExamProject.common',
     'finalExamProject.accounts',
     'finalExamProject.profile_app',
+    'finalExamProject.skins',
 
 
 ]

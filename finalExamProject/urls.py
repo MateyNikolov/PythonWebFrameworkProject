@@ -6,5 +6,6 @@ urlpatterns = [
     path('', include('finalExamProject.common.urls')),
     path('', include('finalExamProject.accounts.urls')),
     path('', include('finalExamProject.profile_app.urls')),
+    path('', include('finalExamProject.skins.urls')),
 
 ]
