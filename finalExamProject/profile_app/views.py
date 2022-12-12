@@ -1,10 +1,33 @@
+from django import forms
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 from django.views import generic as views
 
-from finalExamProject.accounts.views import UserForm
+from finalExamProject.core.validators.validators import validate_age_is_above_16
 from finalExamProject.profile_app.models import Profile
 
 UserModel = get_user_model()
+
+
+class EditProfileForm(forms.ModelForm):
+    MAX_STEAMID_LENGTH = 15
+
+    picture = forms.URLField()
+
+    steam_ID = forms.CharField(
+        max_length=MAX_STEAMID_LENGTH,
+        label='Enter Steam ID',
+        required=True,
+    )
+    age = forms.IntegerField(
+        label='Enter your age',
+        validators=[validate_age_is_above_16],
+    )
+
+    class Meta:
+        model = Profile
+        fields = ("steam_ID", "age", "picture")
 
 
 class ShowProfileView(views.DetailView):
@@ -20,8 +43,18 @@ class ShowProfileView(views.DetailView):
 class EditProfileView(views.UpdateView):
     template_name = 'profile/edit_profile.html'
     model = Profile
-    form_class = UserForm
+    form_class = EditProfileForm
+    success_url = reverse_lazy('home')
 
 
 class DeleteProfileView(views.DeleteView):
-    pass
+    template_name = 'profile/delete_profile.html'
+    model = UserModel
+    success_url = reverse_lazy('login')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['profile'] = Profile.objects.get(pk=self.request.user.pk)
+
+        return context
