@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse navbar" id="navbarNav" style="font-size: medium">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="#" class="nav-link active">
+                    <a href="{% url 'all skins' %}" class="nav-link active">
                         <b>All Skins</b>
                     </a>
                 </li>
@@ -65,7 +65,7 @@
                         <li><a href="#" class="dropdown-item">
                             My Skins
                         </a></li>
-                        <li><a href="#" class="dropdown-item">
+                        <li><a href="{% url 'add skin' %}" class="dropdown-item">
                             Add Skin
                         </a></li>
                         <li><a href="{% url 'logout' %}" class="dropdown-item">
