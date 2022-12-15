@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center h-100">
+                <div class="col-md-12 col-xl-4">
+                    <div class="card" style="border-radius: 15px;background-color: bisque">
+                        <div class="card-body text-center">
+                            <div class="mt-3 mb-4">
+                                {% if profile.picture %}
+                                    <img src="{{ profile.picture }}"
+                                         class="rounded-circle img-fluid" style="width: 100px;"/>
+                                {% else %}
+                                    <img src="{% static 'mediafiles/profile_picture.jpg' %}"
+                                         class="rounded-circle img-fluid" style="width: 100px;"/>
+                                {% endif %}
+                            </div>
+                            <h4 class="mb-2">{{ request.user.username }}</h4>
+
+                            <form method="post">{% csrf_token %}
+                                <strong><p style="margin-top: 50px">Are you sure you want to delete your Profile"?</p></strong>
+                                <input style="background-color: burlywood" type="submit" value="Confirm">
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

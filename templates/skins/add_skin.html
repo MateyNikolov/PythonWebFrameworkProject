@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 class="h1" style="text-align: center;margin-top: 50px">Add Skin</h1>
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex h-100">
+                <div class="col-md-12 col-xl-4 zoom" style="">
+                    <a href="{% url 'add rifle' %}" style="text-decoration: none">
+                        <img class="img-fluid rounded float-left" src="{% static 'skins/rifle.png' %}" style="margin-bottom: -9px">
+                        <p class="h1" style="text-align: center;color: black;">Rifle</p></a>
+                </div>
+                <div class="col-md-12 col-xl-4 zoom">
+                    <a href="{% url 'all rifles' %}" style="text-decoration: none">
+                        <img class="img-fluid rounded mx-auto d-block" src= {% static  'skins/agents.png' %}>
+                        <p class="h1" style="text-align: center;color: black;">Agent</p></a>
+                </div>
+                <div class="col-md-12 col-xl-4 zoom" style="padding-left: 20px">
+                    <a href="{% url 'all rifles' %}" style="text-decoration: none">
+                        <img class="img-fluid rounded float-right" src= {% static 'skins/container.png' %}>
+                        <p class="h1" style="text-align: center;color: black;">Container</p></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
