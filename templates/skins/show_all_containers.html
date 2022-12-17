@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
-    <h1 style="text-align: center; margin-top: 50px">All Rifles</h1>
+    <h1 style="text-align: center; margin-top: 50px">All Containers</h1>
     <div class='row card-group' style="margin-bottom: 100px;">
         {% for item in object_list %}
             <div class="col-4">
@@ -16,7 +16,7 @@
                                     <p class="card-text"><strong>Price:</strong> {{ item.price }} €</p>
                                 </div>
                                 <div class="card-body card-custom">
-                                    <a href="{% url 'gun details' item.pk %}" class="card-link btn" style="background: burlywood">View Skin</a>
+                                    <a href="{% url 'container details' item.pk %}" class="card-link btn" style="background: burlywood">View Skin</a>
                                 </div>
                             </div>
                         </div>

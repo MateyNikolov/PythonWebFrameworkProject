@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<div class="container">
+            <form class="form-group" enctype="multipart/form-data" method="post" action="{% url 'add container' %}">
+                <h1 class="text-center" style="margin-bottom: 40px;">Add Container</h1>
+                <div class="" style="text-align: left">
+                    {% csrf_token %}
+                    {{ form }}
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn" style="background: burlywood">Submit</button>
+                    </div>
+                </div>
+            </form>
+    </div>
+
+
+{% endblock %}
