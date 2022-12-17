@@ -1,4 +1,5 @@
 import django.views.generic as view
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 
 from finalExamProject.skins.forms import CreateRifleForm, CreateAgentForm, CreateContainerForm, RifleEditForm, \
@@ -28,11 +29,11 @@ class ShowAllContainersView(view.ListView):
     paginate_by = 3
 
 
-class AddSkinView(view.TemplateView):
+class AddSkinView(view.TemplateView, LoginRequiredMixin):
     template_name = 'skins/add_skin.html'
 
 
-class AddRifleView(view.CreateView):
+class AddRifleView(view.CreateView, LoginRequiredMixin):
     template_name = 'skins/rifle/add_rifle.html'
     model = Guns
     form_class = CreateRifleForm
@@ -43,7 +44,7 @@ class AddRifleView(view.CreateView):
         return super().form_valid(form)
 
 
-class AddAgentView(view.CreateView):
+class AddAgentView(view.CreateView, LoginRequiredMixin):
     template_name = 'skins/agent/add_agent.html'
     model = Agent
     form_class = CreateAgentForm
@@ -54,7 +55,7 @@ class AddAgentView(view.CreateView):
         return super().form_valid(form)
 
 
-class AddContainerView(view.CreateView):
+class AddContainerView(view.CreateView, LoginRequiredMixin):
     template_name = 'skins/container/add_container.html'
     model = Container
     form_class = CreateContainerForm
@@ -65,7 +66,7 @@ class AddContainerView(view.CreateView):
         return super().form_valid(form)
 
 
-class MySkinsView(view.ListView):
+class MySkinsView(view.ListView, LoginRequiredMixin):
     template_name = 'skins/show_only_my_skins.html'
     model = Guns
     paginate_by = 3
@@ -78,7 +79,7 @@ class MySkinsView(view.ListView):
         return context
 
 
-class ShowRifleDetailsView(view.DetailView):
+class ShowRifleDetailsView(view.DetailView, LoginRequiredMixin):
     template_name = 'skins/rifle/rifle_details.html'
     model = Guns
 
@@ -89,7 +90,7 @@ class ShowRifleDetailsView(view.DetailView):
         return context
 
 
-class ShowAgentDetailsView(view.DetailView):
+class ShowAgentDetailsView(view.DetailView, LoginRequiredMixin):
     template_name = 'skins/agent/agent_details.html'
     model = Agent
 
@@ -104,7 +105,7 @@ class ShowAgentDetailsView(view.DetailView):
         return context
 
 
-class ShowContainerDetailsView(view.DetailView):
+class ShowContainerDetailsView(view.DetailView, LoginRequiredMixin):
     template_name = 'skins/container/container_details.html'
     model = Container
 
@@ -117,7 +118,7 @@ class ShowContainerDetailsView(view.DetailView):
         return context
 
 
-class RifleEditView(view.UpdateView):
+class RifleEditView(view.UpdateView, LoginRequiredMixin):
     template_name = 'skins/rifle/rifle_edit.html'
     model = Guns
     form_class = RifleEditForm
@@ -132,13 +133,13 @@ class RifleEditView(view.UpdateView):
         return reverse_lazy('rifle details', kwargs={'pk': rifle_pk})
 
 
-class RifleDeleteView(view.DeleteView):
+class RifleDeleteView(view.DeleteView, LoginRequiredMixin):
     template_name = 'skins/rifle/rifle_delete.html'
     model = Guns
     success_url = reverse_lazy('my skins')
 
 
-class AgentEditView(view.UpdateView):
+class AgentEditView(view.UpdateView, LoginRequiredMixin):
     template_name = 'skins/agent/agent_edit.html'
     model = Agent
     form_class = AgentEditForm
@@ -153,13 +154,13 @@ class AgentEditView(view.UpdateView):
         return reverse_lazy('agent details', kwargs={'pk': agent_pk})
 
 
-class AgentDeleteView(view.DeleteView):
+class AgentDeleteView(view.DeleteView, LoginRequiredMixin):
     template_name = 'skins/agent/agent_delete.html'
     model = Agent
     success_url = reverse_lazy('my skins')
 
 
-class ContainerEditView(view.UpdateView):
+class ContainerEditView(view.UpdateView, LoginRequiredMixin):
     template_name = 'skins/container/container_edit.html'
     model = Container
     form_class = ContainerEditForm
@@ -174,7 +175,7 @@ class ContainerEditView(view.UpdateView):
         return reverse_lazy('container details', kwargs={'pk': container_pk})
 
 
-class ContainerDeleteView(view.DeleteView):
+class ContainerDeleteView(view.DeleteView, LoginRequiredMixin):
     template_name = 'skins/container/container_delete.html'
     model = Container
     success_url = reverse_lazy('my skins')

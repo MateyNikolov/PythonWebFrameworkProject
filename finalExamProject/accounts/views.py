@@ -1,59 +1,12 @@
-from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, get_user_model, login
 from django.shortcuts import redirect
 
-from finalExamProject.core.validators.validators import validate_age_is_above_16
-from finalExamProject.profile_app.models import Profile
+from finalExamProject.accounts.forms import UserForm
 
 UserModel = get_user_model()
-
-
-class UserForm(UserCreationForm):
-    MAX_STEAMID_LENGTH = 15
-
-    password1 = forms.CharField(
-        label='Enter password',
-        widget=forms.PasswordInput
-    )
-    password2 = forms.CharField(
-        label='Confirm password',
-        widget=forms.PasswordInput
-    )
-    steam_ID = forms.CharField(
-        max_length=MAX_STEAMID_LENGTH,
-        label='Enter Steam ID',
-        required=True,
-    )
-    age = forms.IntegerField(
-        label='Enter your age',
-        validators=[validate_age_is_above_16],
-    )
-
-    class Meta:
-        model = UserModel
-        fields = ("username", "email", "password1", "password2", "steam_ID", "age")
-        help_texts = {
-            "username": None,
-            "email": None,
-        }
-
-    def save(self, commit=True):
-        user = super().save(commit=commit)
-        steamID = self.cleaned_data['steam_ID']
-        age = self.cleaned_data['age']
-        profile = Profile(
-            steam_ID=steamID,
-            age=age,
-            user=user,
-        )
-        if commit:
-            profile.save()
-
-        return user
 
 
 class SignInView(auth_views.LoginView):

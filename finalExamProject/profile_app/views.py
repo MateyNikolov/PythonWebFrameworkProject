@@ -1,37 +1,16 @@
-from django import forms
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-from finalExamProject.core.validators.validators import validate_age_is_above_16
+from finalExamProject.profile_app.forms import EditProfileForm
 from finalExamProject.profile_app.models import Profile
 from finalExamProject.skins.models import Guns, Agent, Container
 
 UserModel = get_user_model()
 
 
-class EditProfileForm(forms.ModelForm):
-    MAX_STEAMID_LENGTH = 15
-
-    picture = forms.URLField()
-
-    steam_ID = forms.CharField(
-        max_length=MAX_STEAMID_LENGTH,
-        label='Enter Steam ID',
-        required=True,
-    )
-    age = forms.IntegerField(
-        label='Enter your age',
-        validators=[validate_age_is_above_16],
-    )
-
-    class Meta:
-        model = Profile
-        fields = ("steam_ID", "age", "picture")
-
-
-class ShowProfileView(views.DetailView):
+class ShowProfileView(views.DetailView, LoginRequiredMixin):
     template_name = 'profile/show_profile.html'
     model = Profile
 
@@ -45,14 +24,14 @@ class ShowProfileView(views.DetailView):
         return context
 
 
-class EditProfileView(views.UpdateView):
+class EditProfileView(views.UpdateView, LoginRequiredMixin):
     template_name = 'profile/edit_profile.html'
     model = Profile
     form_class = EditProfileForm
     success_url = reverse_lazy('home')
 
 
-class DeleteProfileView(views.DeleteView):
+class DeleteProfileView(views.DeleteView, LoginRequiredMixin):
     template_name = 'profile/delete_profile.html'
     model = UserModel
     success_url = reverse_lazy('login')
