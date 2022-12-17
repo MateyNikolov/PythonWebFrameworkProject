@@ -1,6 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
+    {% if guns_objects or agent_objects or container_objects %}
     <h1 style="text-align: center; margin-top: 50px">My Skins</h1>
     {% if guns_objects %}
     <h2 style="text-align: center; margin-top: 50px">Rifles</h2>
@@ -18,7 +19,7 @@
                                       <p class="card-text"><strong>Price:</strong> {{ item.price }} €</p>
                                 </div>
                                 <div class="card-body card-custom">
-                                    <a href="{% url 'gun details' item.pk %}" class="card-link btn" style="background: burlywood">View Skin</a>
+                                    <a href="{% url 'rifle details' item.pk %}" class="card-link btn" style="background: burlywood">View Skin</a>
                                 </div>
                             </div>
                         </div>
@@ -79,5 +80,8 @@
             </div>
         {% endfor %}
     </div>
+    {% endif %}
+    {% else %}
+    <h1 style="text-align: center; margin-top: 50px">Feel free to add some skins.. You don't have any yet.</h1>
     {% endif %}
 {% endblock %}

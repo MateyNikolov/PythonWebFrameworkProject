@@ -3,8 +3,7 @@
 {% block content %}
 
 
-    <section class="vh-100">
-        <div class="container py-5 h-100">
+        <div class="container py-5 h-100" style="margin-bottom: 130px;">
             <div class="row d-flex justify-content-center h-100">
                 <div class="col-md-12 col-xl-4">
                     <div class="card" style="border-radius: 15px;background-color: bisque">
@@ -35,7 +34,7 @@
                             <div class="d-flex justify-content-center text-center mt-5 mb-2">
                                 <div>
                                     <p class="text-muted mb-0"><strong>Total Skins</strong></p>
-                                    <p class="mb-2 h5">8471</p>
+                                    <p class="mb-2 h5">{{ profile.total_skins }}</p>
                                 </div>
                             </div>
                             <button type="button" style="background-color: burlywood" class="btn">
@@ -51,7 +50,6 @@
                 </div>
             </div>
         </div>
-    </section>
 
 
 {% endblock %}

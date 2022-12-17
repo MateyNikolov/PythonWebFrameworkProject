@@ -6,6 +6,7 @@ from django.views import generic as views
 
 from finalExamProject.core.validators.validators import validate_age_is_above_16
 from finalExamProject.profile_app.models import Profile
+from finalExamProject.skins.models import Guns, Agent, Container
 
 UserModel = get_user_model()
 
@@ -37,6 +38,10 @@ class ShowProfileView(views.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['profile'] = self.object
+        total_guns = len(list(Guns.objects.filter(user_id=self.object.pk)))
+        total_agents = len(list(Agent.objects.filter(user_id=self.object.pk)))
+        total_container = len(list(Container.objects.filter(user_id=self.object.pk)))
+        context['profile'].total_skins = total_guns + total_agents + total_container
         return context
 
 

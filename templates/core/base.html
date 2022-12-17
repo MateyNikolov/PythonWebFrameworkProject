@@ -11,7 +11,7 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
-<body style="background-color: #FFCDB2">
+<body style="background-color: #FFCDB2;padding-bottom: 120px;">
 
 <nav class="navbar navbar-expand-lg navbar-light"
      style="background: linear-gradient(to right, #FFB4A2, #FFCDB2) ; padding: 0">
@@ -38,41 +38,41 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 {% if not request.user.is_authenticated %}
-                <li class="nav-item active">
-                    <a href="{% url 'login' %}" class="nav-link active">
-                        <b>Login</b>
-                    </a>
-                </li>
-                <li class="nav-item active">
-                    <a href="{% url 'register' %}" class="nav-link active">
-                        <b>Register</b>
-                    </a>
-                </li>
+                    <li class="nav-item active">
+                        <a href="{% url 'login' %}" class="nav-link active">
+                            <b>Login</b>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="{% url 'register' %}" class="nav-link active">
+                            <b>Register</b>
+                        </a>
+                    </li>
                 {% else %}
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle active"
-                       id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        <b>Hello, {{ request.user.username }}</b>
-                    </a>
-                    <ul class="dropdown-menu"
-                        aria-labelledby="navbarDropdown"
-                        style="background: linear-gradient(to right, #FFB4A2, #FFCDB2) ; padding: 0">
-                        <li><a href="{% url 'show profile' pk=request.user.pk %}" class="dropdown-item">
-                            Profile
-                        </a></li>
-                        <li><a href="{% url 'my skins' %}" class="dropdown-item">
-                            My Skins
-                        </a></li>
-                        <li><a href="{% url 'add skin' %}" class="dropdown-item">
-                            Add Skin
-                        </a></li>
-                        <li><a href="{% url 'logout' %}" class="dropdown-item">
-                            Logout
-                        </a></li>
-                    </ul>
-                </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle active"
+                           id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            <b>Hello, {{ request.user.username }}</b>
+                        </a>
+                        <ul class="dropdown-menu"
+                            aria-labelledby="navbarDropdown"
+                            style="background: linear-gradient(to right, #FFB4A2, #FFCDB2) ; padding: 0">
+                            <li><a href="{% url 'show profile' pk=request.user.pk %}" class="dropdown-item">
+                                Profile
+                            </a></li>
+                            <li><a href="{% url 'my skins' %}" class="dropdown-item">
+                                My Skins
+                            </a></li>
+                            <li><a href="{% url 'add skin' %}" class="dropdown-item">
+                                Add Skin
+                            </a></li>
+                            <li><a href="{% url 'logout' %}" class="dropdown-item">
+                                Logout
+                            </a></li>
+                        </ul>
+                    </li>
                 {% endif %}
             </ul>
         </div>
@@ -88,5 +88,16 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+
+<footer class="text-center text-lg-start fixed-bottom bg-light text-muted">
+        <div class="footer ">
+            <div class="text-center p-4" style="background: linear-gradient(to right,#FFCDB2, #FFB4A2) ;">
+                © 2022 THIS PROJECT IS MADE BY MATEY NIKOLOV ONLY FOR EDUCATIONAL PURPOSE. FOR MORE INFORMATION FEEL FREE TO CONTACT ME
+                ON <a class="text-reset fw-bold" href="https://www.facebook.com/mnikolov92/"> FACEBOOK </a>
+            </div>
+        </div>
+</footer>
 </body>
+
+
 </html>

@@ -1,0 +1,59 @@
+{% extends  'core/base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <div class="container mt-5">
+        <div class="row  d-flex justify-content-center">
+            <div class="col-md-8">
+                {% if comments %}
+                    <div class="container" style="margin-bottom: 20px">
+                        <h4 style="text-align: center">Comments</h4>
+                    </div>
+
+                    {% for obj in comments %}
+                    <div class="card p-3" style="background-color: burlywood;margin-bottom: 10px">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="user d-flex flex-row align-items-center">
+                                {% if obj.picture %}
+                                <img src="{{ obj.picture }}" width="30"
+                                     class="user-img rounded-circle mr-2">
+                                {% else %}
+                                <img src="{% static 'mediafiles/profile_picture.jpg' %}" width="30"
+                                     class="user-img rounded-circle mr-2">
+                                {% endif %}
+                                <span><small class="font-weight-bold text-primary"
+                                             style="margin-left: 10px">{{ obj.user.username }}</small> <small
+                                        class="font-weight-bold">{{ obj.comment_text }}</small></span>
+                            </div>
+                            <small>{{ obj.date }}</small>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                {% else %}
+                    <div class="container" style="text-align: center;margin-bottom: 150px">
+                        <h1>No posted comments yet...</h1>
+                    </div>
+
+                {% endif %}
+                <div class="container d-flex justify-content-between align-items-center mb-3">
+                    <form class="form-group" action="{% url 'share experience' %}" method="post"
+                          style="width: fit-content;margin-top: 150px;height: 150px">
+                        {% csrf_token %}
+                        <h4 style="text-align: center;margin-top: -40px">Post Comment</h4>
+                        <div style="float: left;">
+                        {{ form.as_p }}
+                        </div>
+                        <div style="float:right;margin-left: 8px;margin-top: 10px">
+                            <button>
+                                <img src="{% static 'post-comment.png' %}" height="18" alt="img2">
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

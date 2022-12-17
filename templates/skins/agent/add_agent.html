@@ -1,11 +1,10 @@
 {% extends 'core/base.html' %}
-
 {% block content %}
 
-    <div class="container" style="margin-bottom: 252px;">
-            <form class="form-group" method="post" action="{% url 'edit profile' pk=request.user.pk%}">
-                <h1 class="text-center" style="margin-bottom: 40px;">Edit Profile</h1>
-                <div class="" style="text-align: center">
+<div class="container" style="margin-top: -55px;margin-bottom: 5px">
+            <form class="form-group" enctype="multipart/form-data" method="post" action="{% url 'add agent' %}">
+                <h1 class="text-center" style="margin-bottom: 40px;">Add Agent</h1>
+                <div class="" style="text-align: left">
                     {% csrf_token %}
                     {{ form }}
                     <div class="d-flex justify-content-center">

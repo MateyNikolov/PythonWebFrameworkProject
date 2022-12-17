@@ -1,9 +1,8 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
-    <section class="vh-100">
-        <h1 style="text-align: center;margin-top: 30px;margin-bottom: 30px">Agent</h1>
-        <div class="container">
+        <h1 style="text-align: center;margin-top: 30px;margin-bottom: 30px">Container</h1>
+        <div class="container" style="margin-bottom: 30px">
             <div class="row">
                 <div class="col-sm">
                     <div class="card text-center mx-auto" style="width: 19rem;box-shadow: 10px 10px 8px #888888">
@@ -11,21 +10,20 @@
                              src="{{ obj.picture.url }}" alt="Card image cap">
                         <div class="card-body card-custom">
                             <h3 style="margin-bottom: 40px" class="card-title">Name: {{ obj.name }}</h3>
-                            <p class="card-text"><strong>Side: </strong>{{ obj.side_to_show }}</p>
+                            <p class="card-text"><strong>Type: </strong>{{ obj.type_to_show | title }}</p>
                             <p class="card-text"><strong>Price: </strong>{{ obj.price }} €</p>
                             <p class="card-text"><strong>Description: </strong>{{ obj.description }}</p>
                         </div>
                         {% if is_owner %}
-                        <div class="card-body card-custom">
-                            <a href="#" class="card-link btn" style="background: burlywood">Edit Skin</a>
-                            <a href="#" class="card-link btn" style="background: burlywood">Delete Skin</a>
-                        </div>
+                            <div class="card-body card-custom">
+                                <a href="{% url 'container edit' obj.pk %}" class="card-link btn" style="background: burlywood">Edit Skin</a>
+                                <a href="{% url 'container delete' obj.pk %}" class="card-link btn" style="background: burlywood">Delete Skin</a>
+                            </div>
                         {% endif %}
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 {% endblock %}
 
 

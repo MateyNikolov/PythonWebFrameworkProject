@@ -3,33 +3,29 @@
 
 {% block content %}
 
-        <div class="container py-5 h-100" style="margin-bottom: 293px;">
+        <h1 style="text-align: center;margin-top: 50px">Delete Agent</h1>
+        <div class="container py-5 h-100" style="margin-bottom: 170px">
             <div class="row d-flex justify-content-center h-100">
                 <div class="col-md-12 col-xl-4">
                     <div class="card" style="border-radius: 15px;background-color: bisque">
                         <div class="card-body text-center">
                             <div class="mt-3 mb-4">
-                                {% if profile.picture %}
-                                    <img src="{{ profile.picture }}"
-                                         class="rounded-circle img-fluid" style="width: 100px;"/>
-                                {% else %}
-                                    <img src="{% static 'mediafiles/profile_picture.jpg' %}"
-                                         class="rounded-circle img-fluid" style="width: 100px;"/>
-                                {% endif %}
+                                <img src="{{ object.picture.url }}"
+                                     class=" img-fluid" style="width: 100px;"/>
                             </div>
-                            <h4 class="mb-2">{{ request.user.username }}</h4>
-
                             <form method="post">{% csrf_token %}
-                                <strong><p style="margin-top: 50px">Are you sure you want to delete your Profile"?</p>
+                                <strong><p style="margin-top: 50px">Are you sure you want to delete the
+                                    agent {{ object.name }}"?</p>
                                 </strong>
                                 <div class="card-body card-custom">
                                     <button type="submit" class="btn" style="background: burlywood">Confirm</button>
-                                    <a href="{% url 'show profile' request.user.pk %}" class="card-link btn"
+                                    <a href="{% url 'my skins' %}" class="card-link btn"
                                        style="background: burlywood">Cancel</a>
                                 </div>
                             </form>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

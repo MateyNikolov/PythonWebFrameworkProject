@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <body>
+    <div class="container" style="display: flex;align-items: center;  justify-content:center; margin-bottom: 70px">
+        <div class="image" style="float: left">
+            <img src="{% static 'blackwolf.png' %}">
+        </div>
+        <div class="text" style="text-align: center">
+            <h1 style="margin-bottom: 100px">GOTCHA! ACCESS DENIED PLEASE LOG IN FIRST....</h1>
+            <h1>Error Code 403</h1>
+        </div>
+    </div>
+    </body>
+
+
+{% endblock %}

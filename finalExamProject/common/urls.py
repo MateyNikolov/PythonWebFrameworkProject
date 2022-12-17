@@ -1,7 +1,8 @@
 from django.urls import path
 
-from finalExamProject.common.views import show_this_page
+from finalExamProject.common.views import ShowHomePageView, ShareExperienceView
 
 urlpatterns = [
-    path('', show_this_page, name='home')
+    path('', ShowHomePageView.as_view(), name='home'),
+    path('share-experience', ShareExperienceView.as_view(), name='share experience'),
 ]

@@ -7,8 +7,11 @@ UserModel = get_user_model()
 
 @admin.register(UserModel)
 class MainUserAdmin(auth_admin.UserAdmin):
-    list_display = ['username', 'is_staff', 'email']
-    list_filter = ()
+    list_display = ['username', 'is_staff', 'is_superuser','email', 'date_joined']
+    list_filter = ('last_login', 'username',)
+    ordering = ('-is_superuser',)
+    search_fields = ('username',)
+    readonly_fields = ('date_joined',)
 
     fieldsets = (
         (None, {"fields": ("username", "password")}),

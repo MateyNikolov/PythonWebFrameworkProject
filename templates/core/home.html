@@ -3,20 +3,20 @@
 
 {% block content %}
 
-
     <div class="header">
-        <div id="header-container" class="container">
+        <div id="header-container" class="container" style="margin-bottom: -100px">
             <div class="headerdiv">
                 <img src="{% static 'banner.png' %}" class="img-fluid" alt="header SU">
+            </div>
+        </div>
+        <div class="container">
+            <div class="col-md-12 text-center">
+                <a href="{% url 'share experience' %}" class="btn"
+                   style="background: burlywood; margin-top: 10px;margin-bottom: 40px;height: 90px;width: 350px;line-height: 0;border-color: black"><h3 style="margin-top: 15px">Share Experience</h3></a>
             </div>
         </div>
     </div>
 
     {#    TODO make contact page!#}
-    <div class="container">
-        <div class="col-md-12 text-center">
-            <a href="{% url 'register' %}" class="btn" style="background: burlywood; margin-top: 15px;">Share Experience</a>
-        </div>
-    </div>
 
 {% endblock %}
