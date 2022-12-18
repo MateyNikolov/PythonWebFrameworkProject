@@ -13,18 +13,28 @@ class UserForm(UserCreationForm):
 
     password1 = forms.CharField(
         label='Enter password',
-        widget=forms.PasswordInput
+        widget=forms.PasswordInput(
+            attrs={'placeholder': 'Enter your password'}
+        )
     )
     password2 = forms.CharField(
         label='Confirm password',
-        widget=forms.PasswordInput
+        widget=forms.PasswordInput(
+            attrs={'placeholder': 'Confirm your password'}
+        )
     )
     steam_ID = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Enter your STEAM ID'}
+        ),
         max_length=MAX_STEAMID_LENGTH,
         label='Enter Steam ID',
         required=True,
     )
     age = forms.IntegerField(
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Enter your age'}
+        ),
         label='Enter your age',
         validators=[validate_age_is_above_16],
     )
@@ -35,6 +45,10 @@ class UserForm(UserCreationForm):
         help_texts = {
             "username": None,
             "email": None,
+        }
+        widgets = {
+            'username': forms.TextInput(attrs={'placeholder': 'Please enter username'}),
+            'email': forms.TextInput(attrs={'placeholder': 'Please enter your email'}),
         }
 
     def save(self, commit=True):
