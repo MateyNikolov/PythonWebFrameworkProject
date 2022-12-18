@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-
+    {% if is_owner %}
     <div class="container d-flex justify-content-center" style="margin-top: -50px;margin-bottom: 30px">
             <form class="form-group" enctype="multipart/form-data" method="post" action="{% url 'agent edit' obj.pk %}">
                 <h1 class="text-center" style="margin-bottom: 40px;">Edit Agent</h1>
@@ -14,6 +14,9 @@
                 </div>
             </form>
     </div>
+    {% else %}
+     <meta http-equiv="REFRESH" content="0;url={% url 'all skins' %}">
+    {% endif %}
 
 
 {% endblock %}

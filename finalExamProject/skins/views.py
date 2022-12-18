@@ -126,6 +126,7 @@ class RifleEditView(view.UpdateView, LoginRequiredMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['obj'] = self.object
+        context['is_owner'] = self.object.user_id == self.request.user.pk
         return context
 
     def get_success_url(self):
@@ -138,6 +139,11 @@ class RifleDeleteView(view.DeleteView, LoginRequiredMixin):
     model = Guns
     success_url = reverse_lazy('my skins')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_owner'] = self.object.user_id == self.request.user.pk
+        return context
+
 
 class AgentEditView(view.UpdateView, LoginRequiredMixin):
     template_name = 'skins/agent/agent_edit.html'
@@ -147,6 +153,7 @@ class AgentEditView(view.UpdateView, LoginRequiredMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['obj'] = self.object
+        context['is_owner'] = self.object.user_id == self.request.user.pk
         return context
 
     def get_success_url(self):
@@ -159,6 +166,11 @@ class AgentDeleteView(view.DeleteView, LoginRequiredMixin):
     model = Agent
     success_url = reverse_lazy('my skins')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_owner'] = self.object.user_id == self.request.user.pk
+        return context
+
 
 class ContainerEditView(view.UpdateView, LoginRequiredMixin):
     template_name = 'skins/container/container_edit.html'
@@ -168,6 +180,7 @@ class ContainerEditView(view.UpdateView, LoginRequiredMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['obj'] = self.object
+        context['is_owner'] = self.object.user_id == self.request.user.pk
         return context
 
     def get_success_url(self):
@@ -179,3 +192,8 @@ class ContainerDeleteView(view.DeleteView, LoginRequiredMixin):
     template_name = 'skins/container/container_delete.html'
     model = Container
     success_url = reverse_lazy('my skins')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_owner'] = self.object.user_id == self.request.user.pk
+        return context

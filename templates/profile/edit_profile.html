@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-
+    {% if object.pk == request.user.pk %}
     <div class="container d-flex justify-content-center" style="margin-bottom: 252px;">
             <form class="form-group" method="post" action="{% url 'edit profile' pk=request.user.pk%}">
                 <h1 class="text-center" style="margin-bottom: 40px;">Edit Profile</h1>
@@ -14,6 +14,8 @@
                 </div>
             </form>
     </div>
-
+    {% else %}
+        <meta http-equiv="REFRESH" content="0;url={% url 'edit profile' request.user.pk %}">
+    {% endif %}
 
 {% endblock %}
