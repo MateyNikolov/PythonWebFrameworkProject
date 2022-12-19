@@ -11,3 +11,8 @@ urlpatterns = [
     path('profile/', include('finalExamProject.profile_app.urls')),
     path('skins/', include('finalExamProject.skins.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+handler500 = 'finalExamProject.common.handlers.handler500'
+handler404 = 'finalExamProject.common.handlers.handler404'
+handler403 = 'finalExamProject.common.handlers.handler403'

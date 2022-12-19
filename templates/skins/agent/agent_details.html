@@ -13,6 +13,7 @@
                             <p class="card-text"><strong>Side: </strong>{{ obj.side_to_show }}</p>
                             <p class="card-text"><strong>Price: </strong>{{ obj.price }} €</p>
                             <p class="card-text"><strong>Description: </strong>{{ obj.description }}</p>
+                            <p class="card-text"><strong>Owner: </strong>{{ obj.user.username }}</p>
                         </div>
                         {% if is_owner %}
                         <div class="card-body card-custom">
