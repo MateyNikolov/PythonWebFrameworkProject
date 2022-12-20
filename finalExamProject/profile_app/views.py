@@ -1,14 +1,14 @@
-from django.contrib import messages
+import django.contrib.auth.views as auth_views
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-import django.contrib.auth.views as auth_views
-
 from django.urls import reverse_lazy
 from django.views import generic as views
 
+from finalExamProject.core.services.send_email import send_notification_email
 from finalExamProject.profile_app.forms import EditProfileForm, ChangePasswordForm
 from finalExamProject.profile_app.models import Profile
 from finalExamProject.skins.models import Guns, Agent, Container
+
 
 UserModel = get_user_model()
 
@@ -44,9 +44,7 @@ class DeleteProfileView(views.DeleteView, LoginRequiredMixin):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['profile'] = Profile.objects.get(pk=self.request.user.pk)
-
         return context
 
 
@@ -56,9 +54,22 @@ class ChangePassword(auth_views.PasswordChangeView):
 
     def form_valid(self, form):
         form.save()
-        messages.success(self.request, "Your password has been changed.")
         return super(ChangePassword, self).form_valid(form)
 
     def get_success_url(self):
         user_pk = self.request.user.pk
         return reverse_lazy('show profile', kwargs={'pk': user_pk})
+
+
+class SignUpEmailNotificationPage(views.TemplateView):
+    template_name = 'profile/success_email_page.html'
+
+    def get(self, request, *args, **kwargs):
+        context = super().get(request, *args, **kwargs)
+        email = self.request.user.email
+        username = self.request.user.username
+        send_notification_email(email=email, username=username)
+        profile = Profile.objects.get(pk=self.request.user.pk)
+        profile.email_signed = True
+        profile.save()
+        return context

@@ -17,6 +17,10 @@ class Profile(models.Model):
         blank=True,
     )
 
+    email_signed = models.BooleanField(
+        default=False,
+    )
+
     user = models.OneToOneField(
         UserModel,
         on_delete=models.CASCADE,

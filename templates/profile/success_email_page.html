@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <body>
+    <div class="container" style="display: flex;align-items: center;  justify-content:center; margin-bottom: 70px">
+        <div class="image" style="float: left">
+            <img src="{% static 'rebel.png' %}">
+        </div>
+        <div class="text" style="text-align: center">
+            <h1>NICE!</h1>
+            <h1 style="margin-bottom: 100px">You just signed up for News and Notifications.</h1>
+            <h2> You can check your email box, for the confirmation email.</h2>
+            <h2> Redirecting to Home Page in 10 seconds...</h2>
+        </div>
+    </div>
+    </body>
+    <meta http-equiv="refresh" content="10;url={% url 'home' %}">
+
+{% endblock %}

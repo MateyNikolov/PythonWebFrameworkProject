@@ -52,10 +52,12 @@
                                 </button>
                             </div>
                         </div>
+                        {% if not profile.email_signed %}
                         <button type="button" style="background-color: burlywood" class="btn">
-                            <a href="{% url 'delete profile' pk=request.user.pk %}"
+                            <a href="{% url 'email sign up' %}"
                                style="text-decoration: none;color:black"> Sign up for Notifications and News! </a>
                         </button>
+                        {% endif %}
                     </div>
                 </div>
             </div>
