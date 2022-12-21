@@ -1,7 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
+from django.urls import reverse
 
 from finalExamProject.accounts.forms import UserForm
+from tests.base.base_file import BaseTestCase
 
 UserModel = get_user_model()
 
@@ -67,3 +69,15 @@ class RegisterFunctionality(TestCase):
              }
         )
         self.assertFalse(reg_form.is_valid())
+
+
+class LogOutViewTest(BaseTestCase):
+    def tearDown(self):
+        self.user.delete()
+
+    def test_redirect_to_home_after_logout(self):
+        is_logged = self.client.login(username=self.USERNAME, email=self.EMAIL, password=self.PASSWORD)
+        self.assertTrue(is_logged)
+        response = self.client.get(reverse('logout'), follow=False)
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(reverse('home'), response.headers['location'])
