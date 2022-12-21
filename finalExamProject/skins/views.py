@@ -15,18 +15,21 @@ class ShowAllRiflesView(view.ListView):
     template_name = 'skins/rifle/show_all_rifles.html'
     model = Guns
     paginate_by = 3
+    ordering = ('price', )
 
 
 class ShowAllAgentsView(view.ListView):
     template_name = 'skins/agent/show_all_agents.html'
     model = Agent
     paginate_by = 3
+    ordering = ('price',)
 
 
 class ShowAllContainersView(view.ListView):
     template_name = 'skins/container/show_all_containers.html'
     model = Container
     paginate_by = 3
+    ordering = ('price',)
 
 
 class AddSkinView(view.TemplateView, LoginRequiredMixin):
